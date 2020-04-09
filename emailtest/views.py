@@ -29,7 +29,7 @@ def testit(request):
         subject='forgot password'
         email_from=settings.EMAIL_HOST_USER
         email_to=user.email_id
-        content='Click below link to reset your password\n'+'http://127.0.0.1:8000/email/gotoresetlink/'
+        content='Click below link to reset your password\n'+'http://mjbookportal.pythonanywhere.com/email/gotoresetlink/'
         list=[]
         list.append(email_to)
         send_mail(subject,content,email_from,list)
