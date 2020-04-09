@@ -1,0 +1,44 @@
+{% extends 'base3.html' %}
+{% block content %}
+    <body bgcolor="cyan">
+    {% if book %}
+        <table bgcolor="#e75480" cellspacing="0" cellpadding="10" align="center">
+            <tr>
+            {% for bk in book %}
+                <td><table bgcolor="pink">
+                    <tr>
+                        <td><center><img src ='{{bk.b_photo.url}}' width="225px" height="300px"/></center></td>
+                    </tr>
+                    <tr>
+                        <td>Seller: {{bk.seller_name}}</td>
+                    </tr>
+                    {% if bk.b_ISBN %}
+                        <tr>
+                            <td>ISBN: {{bk.b_ISBN}}</td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <td>Author: {{bk.b_author}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price: {{bk.b_price}}</td>
+                    </tr>
+                    {% if bk.b_publisher %}
+                        <tr>
+                            <td>{{bk.b_publisher}} publication</td>
+                        </tr>
+                    {% endif %}
+                    {% if bk.b_description %}
+                        <tr>
+                            <td>Description: {{bk.b_description}}</td>
+                        </tr>
+                    {% endif %}
+                </table></td>
+            {% endfor %}
+            </tr>
+        </table>
+    {% else %}
+        <center><h3>Book Not Found..!!</h3></center>
+    {% endif %}
+    </body>
+{% endblock %}

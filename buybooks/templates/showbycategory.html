@@ -1,0 +1,129 @@
+{% extends 'base4.html' %}
+{% block content %}
+    <style>
+        .button2{
+	        background-color: #ffffff;
+	        color:black;
+	        padding:4px 8px;
+	        font-weight: bold;
+        }  
+        
+    .button2:hover {
+        background-color: #ee4779;
+        color: white;
+    }
+    .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-container button:hover {
+        background: #ccc;   
+    }
+
+    input[type=text], .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+
+    .dropdown{
+        position:relative;
+        display:inline-block;
+    }
+
+    .dropdown-content{
+        display:inline-block;
+        position: absolute;
+        right:0;
+        background-color:pink;
+        min-width: 160px;
+    }
+    </style>
+    <body bgcolor="pink">
+    <button class="button" style="position:absolute;left:0" onclick="location.href='/buy/viewcart/'" name="cart">View Cart</button>
+    <br><br><br><br>
+
+        <div class="search-container">
+            <form action="/buy/search/" method="POST">{% csrf_token %}
+                <div class="dropdown-content" style="right:0">
+                    <B>Sort: </B>
+                    <select name="sort" id="sort" onchange="mfunction()">
+                        <option value="select1">--Select--</option>
+                        <option value="price htol">Price high to low</option>
+                        <option value="price ltoh">Price low to high</option>
+                        <option value="recent">Recently Uploaded</option>
+                    </select>&nbsp;&nbsp;
+                    <B>Search-by: </B>
+                    <select name="searchby">
+                        <option value="select">--Select--</option>
+                        <option value="b_ISBN">ISBN no</option>
+                        <option value="b_author">Author</option>
+                        <option value="b_name">Book name</option>
+                        <option value="seller_name">Seller name</option>
+                        <option value="b_publisher">Publisher</option>
+                    </select> 
+                </div>
+                <br><br>
+                <input type="text" placeholder="Type here to search.." name="search">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <script type="text/javascript">
+                function mfunction()
+                {
+                    document.getElementById("formid").submit();
+                }
+            </script>
+        </div><br>
+    {% if book and book != 'notfound' %}
+        {% if msg  and msg != '' %}
+            <center><B><h3><font color="red">{{msg}}</font></h3></B></center>
+            <br>
+        {% else %}
+        <table bgcolor="#e75480" cellspacing="0" cellpadding="10" align="center">
+            <tr>
+            <!--{% for bk in book %}-->
+            <form action="/buy/getbook/" method="POST">{% csrf_token %}
+                <td><table bgcolor="#00ffff">
+                    <tr>
+                        <td><center><img src ='{{bk.b_photo.url}}' width="225px" height="300px"/></center></td>
+                    </tr>
+                    <tr>
+                        <td>Price: {{bk.b_price}}</td>
+                    </tr>
+                    <tr>
+                        <td>Author: {{bk.b_author}}</td>
+                    </tr>
+                    <tr>
+                        <td>Uploader: {{bk.uploader_name_id}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="hidden1" value="{{bk.b_name}}">
+                            <input type="hidden" name="hidden2" value="{{bk.uploader_name_id}}">
+                            <center>
+                                <input type="submit" class="button2" name="check" value="Show details" onclick="location.href='/buy/getbook/'">
+                                <input type="submit" class="button2" name="check" value="Add" onclick="location.href='/buy/getbook/'">
+                            </center>
+                        </td>
+                    </tr>
+                </table></td>
+            </form>
+            <!--{% endfor %}-->
+            </tr>
+        </table><br>
+        {% endif %}
+    {% else %}
+        <center><h3>Book Not Found..!!</h3></center>
+    {% endif %}
+    </body>
+{% endblock %}

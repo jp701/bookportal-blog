@@ -1,0 +1,60 @@
+{% extends 'base3.html' %}
+{% block content %}
+    <style>
+        .button3{
+	        background-color: #00ffff;
+	        color:rgb(0, 0, 0);
+	        padding:4px 8px;
+            font-weight: bold;
+            border-radius: 1ch;
+        }   
+    </style>
+    <body bgcolor="cyan">
+    {% if book %}
+        <table bgcolor="#e75480" cellspacing="0" cellpadding="10" align="center">
+            <tr>
+            {% for bk in book %}
+            <form action="/upload/getdetails/" method="post">{% csrf_token %}
+                <td><table bgcolor="pink">
+                    <tr>
+                        <td><center><img src ='{{bk.b_photo.url}}' width="225px" height="300px"/></center></td>
+                    </tr>
+                    <!--<tr>
+                        <td>Uploader: {{bk.uploader_name_id}}</td>
+                    </tr>-->
+                    {% if bk.b_ISBN %}
+                        <tr>
+                            <td>ISBN: {{bk.b_ISBN}}</td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <td>Author: {{bk.b_author}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price: {{bk.b_price}}</td>
+                    </tr>
+                    {% if bk.b_publisher %}
+                        <tr>
+                            <td>{{bk.b_publisher}} publication</td>
+                        </tr>
+                    {% endif %}
+                    {% if bk.b_description %}
+                        <tr><td>Description:</td></tr>
+                        <tr><td>{{bk.b_description}}</td></tr>
+                    {% endif %}
+                    <tr>
+                        <td><center><input type="submit" class="button3" name="update" value="Update"/>
+                        <input type="submit" class="button3" name="update" value="Delete"/></center></td>
+                    </tr>
+                </table></td>
+                <input type="hidden" name="hidden" value='{{bk.b_name}}'>
+            </form>
+            {% endfor %}
+            </tr>
+        </table><br>
+        <center><input type="button" class="button2" name="delete" value="Delete All" onclick="location.href='/profile/deleteAll/'"></center>
+    {% else %}
+        <center><h3>Book Not Found..!!</h3></center>
+    {% endif %}
+    </body>
+{%endblock%}

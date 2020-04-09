@@ -1,0 +1,11 @@
+{% extends 'base3.html' %}
+{% block content %}
+    <body bgcolor="pink">
+        {% if request %}
+            <br>
+            <h3><B><center>Welcome, {{uname}} !!</center></B></h3>
+            <br>
+            <font color="red"><B><center>{{msg}}</center></B></font>
+        {% endif %}
+    </body>
+{% endblock %}

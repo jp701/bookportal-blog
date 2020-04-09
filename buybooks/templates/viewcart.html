@@ -1,0 +1,113 @@
+{% extends 'base4.html' %}
+{% block content %}
+<html>
+    <head></head>
+    <title>View Cart</title>
+    <style>
+        #m table,td{
+            text-align: center;
+            background-color: #d3d3d3;
+        }
+        #m th{
+            background-color: rgb(10, 133, 10);
+            color:white;
+            text-align: center;
+            font-weight: bold;
+        }
+        #m tr,th{
+            height:50px;
+        }
+        #m table,td{
+            font-weight: bold;
+            border-width: 2px;
+            border-style:solid;
+            border-spacing:0mm;
+            border-color:solid black;
+            padding:10px;
+        }
+        #inner table,td,tr{
+            border:none;
+            text-align: left;
+        }
+        .button2{
+            background-color:rgb(253, 98, 124);
+            border-radius: 4px;
+            color:black;
+            padding:10px 18px;
+            font-weight: bold;
+        }
+    </style>
+    <body bgcolor="pink">
+        <br><br><br><br>
+        <table id="m" align="center"  width="75%">
+        {% if list and len != 0 %}
+            <tr>
+                <th>Book</th>
+                <th>Details</th>
+                <th>Cost</th>
+                <th>Action</th>
+            </tr>
+            {% for bk in list %}
+            <form action="/buy/remove/" method="POST">{% csrf_token %}
+                <tr>
+                    <td><img src='{{bk.b_photo.url}}' width='225px' height='300px'/></td>
+                    <td>
+                        <table id="inner">
+                            <tr>
+                                <td>Author :</td>
+                                <td>{{bk.b_author}}</td>
+                            </tr>
+                            <tr>
+                                <td>ISBN no:</td>
+                                {% if bk.b_ISBN %}
+                                    <td>{{bk.b_ISBN}}</td>
+                                {% else %}
+                                    <td>-</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Category:</td>
+                                <td>{{bk.b_category}}</td>
+                            </tr>
+                            <tr>
+                                <td>Publisher:</td>
+                                {% if bk.b_publisher %}
+                                    <td>{{bk.b_publisher}}</td>
+                                {% else %}
+                                    <td>-</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Seller name:</td>
+                                <td>{{bk.uploader_name_id}}</td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td>{{bk.b_description}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>{{bk.b_price}}</td>
+                    <input type="hidden" name="hidden1" value="{{bk.b_name}}"/>
+                    <input type="hidden" name="hidden2" value="{{bk.uploader_name_id}}"/> 
+                    <td><input type="submit" class="button2" name="remove" value="Remove"></td>
+                </tr>
+            </form>
+            {% endfor %}
+        </table>
+            {% if price %}
+                <center><h3><B>TOTAL PRICE: {{price}}</B></h3></center><br>
+            {% endif %}
+            <center><input type="button" class="button2" name="buy" Value="Buy" onclick="location.href='/buy/orderconfirm/'"/>
+            <input type="button" class="button2" name="add" value="Add more" onclick="location.href='/buy/'"/></center>
+        {% else %}
+            <br><br><br>
+            <center><h2>There are no items in your cart</h2></center>
+            <br><br><br>
+            <center>
+                <input type="button" class="button2" name="add" value="Continue Buying" onclick="location.href='/buy/'"/>
+            </center>
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

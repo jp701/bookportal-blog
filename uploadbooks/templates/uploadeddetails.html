@@ -1,0 +1,98 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<html>
+    <head></head>
+    <title>Uploaded Books</title>
+    <style>
+        tr,th{
+            height:50px;
+        }
+        table,td{
+            font-weight: bold;
+            border-width: 2px;
+            border-style:solid;
+            border-spacing:0mm;
+            border-color:solid black;
+            padding:10px;
+        }
+        tr:nth-child(even){
+            background-color: #ffffff;
+        }
+        .label{
+            color:solid black;
+            padding:8px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        .button{
+	        background-color: #ffffff;
+	        color:black;
+	        padding:9px 18px;
+            font-weight:700;
+            border:2px solid rgb(65, 31, 214);
+            border-radius: 5%;
+        }
+        .button:hover {
+            background-color: rgb(43, 2, 224);
+            border:2px solid rgb(43, 2, 224);
+            color: white;
+        }
+    </style>
+    <body bgcolor="#00FFFF">
+        <h2><center><span class="label">UPLOADED BOOK DETAILS</span></center></h2>
+        <form action="/upload/getdetails/" method="POST"> {% csrf_token %}
+        {% if img %}
+        <table align="center">
+            <tr>
+                <td>Title</td>
+                <td>{{img.b_name}}</td>
+                <td rowspan="8"><img src='{{img.b_photo.url}}' width='260px' height='370px'/></td>
+            </tr>
+            <tr>
+                <td>ISBN no</td>
+                {% if img.b_ISBN != '' %}
+                    <td>{{img.b_ISBN}}</td>
+                {% else %}
+                    <td>-</td>
+                {%endif%}
+            </tr>
+            <tr>
+                <td>Author name</td>
+                <td>{{img.b_author}}</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>{{img.b_price}}</td>
+            </tr>
+            <tr>
+                <td>Publisher</td>
+                {% if img.b_publisher%}
+                    <td>{{img.b_publisher}}</td>
+                {% else %}
+                    <td>-</td>
+                {%endif%} 
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>{{img.b_category}}</td>
+            </tr>
+            <tr>
+                <td>Uploader Name</td>
+                <td>{{img.uploader_name_id}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td rowspan="2">{{img.b_description}}</td>
+            </tr>
+        </table>
+        <br>
+            <input type="hidden" name="hidden" value="{{img.b_name}}"/>
+            <center>
+                <input type="submit" class="button" name="update" value="Update details">
+                <input type="button" class="button" onclick="location.href='/upload/'" name="upload" value="Upload Books">
+            </center>
+        {% endif %}
+        </form>
+    </body>
+</html>
+{% endblock %}

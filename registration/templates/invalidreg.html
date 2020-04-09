@@ -1,0 +1,22 @@
+{% extends 'base1.html' %}
+{% block content%}
+<html>
+    <title>Invalid Registration Credentials</title>
+    <body bgcolor="#00FFFF">
+        <h2>Registration credentials are invalid...</h2><br>
+        {% if msg %}
+            <h3><font color="red">{{msg}}</font></h3>
+        {% else %}
+            <h3>Validation rules: </h3>
+            <table bgcolor="#FF3D29">
+               <tr><td>@ Password and confirm password must match. </td></tr> 
+               <tr><td>@ Password must contain atleast 8 characters and atmost 12 characters.</td></tr>
+               <tr><td>@ Username should be 4 to 15 characters long.</td></tr>
+               <tr><td>@ Mobile number must contain 10 digits.</td></tr>
+               <tr><td>@ Email-id should be valid email address.</td></tr>
+            </table>
+        {% endif %}
+        <br><br>Please <a href="/register/">Register again :)</a><br><br>
+    </body>
+</html>
+{% endblock %}

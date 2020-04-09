@@ -1,0 +1,12 @@
+{% extends 'base4.html' %}
+{% block content %}
+    <body bgcolor="yellow">
+    <br><br><br><br>
+    {% if msg1 %}
+        <center><h3>{{msg1}}</h3></center>
+        {% if msg2 %}
+            <center><h3>{{msg2}}</h3></center>
+        {% endif %}
+    {% endif %}
+    </body>
+{% endblock %}

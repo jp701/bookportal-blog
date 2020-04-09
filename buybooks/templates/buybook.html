@@ -1,0 +1,159 @@
+{% extends 'base4.html' %}
+{% block content %}
+<style>
+    .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-container button:hover {
+        background: #ccc;   
+    }
+
+    input[type=text], .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+
+    .dropdown{
+        position:relative;
+        display:inline-block;
+    }
+
+    .dropdown-content{
+        display:inline-block;
+        position: absolute;
+        right:0;
+        background-color:pink;
+        min-width: 160px;
+    }
+
+    .button2{
+	    background-color: #ffffff;
+	    color:black;
+	    padding:10px 18px;
+        font-weight: bold;
+        border: 2px solid #008CBA;
+        border-radius: 4px;
+    }
+
+    .button2:hover {
+        background-color: #008CBA;
+        color: white;
+    }
+</style>
+<body bgcolor="pink">
+    <button class="button" style="position:absolute;left:0" onclick="location.href='/buy/viewcart/'" name="cart">View Cart</button>
+    <br><br><br><br>
+    <div class="search-container">
+        <form id="formid" action="/buy/search/" method="POST">{% csrf_token %}
+            <div class="dropdown-content" style="right:0">
+                <B>Sort: </B>
+                <select name="sort" id="sort" onchange="mfunction()">
+                    <option value="select1">--Select--</option>
+                    <option value="price htol">Price high to low</option>
+                    <option value="price ltoh">Price low to high</option>
+                    <option value="recent">Recently Uploaded</option>
+                </select>&nbsp;&nbsp;
+                <B>Search-by: </B>
+                <select name="searchby">
+                    <option value="select">--Select--</option>
+                    <option value="b_ISBN">ISBN no</option>
+                    <option value="b_author">Author</option>
+                    <option value="b_name">Book name</option>
+                    <option value="seller_name">Seller name</option>
+                    <option value="b_publisher">Publisher</option>
+                </select>
+            </div>
+            <br><br>
+            <input type="text" placeholder="Type here to search.." name="search">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <script type="text/javascript">
+            function mfunction()
+            {
+                document.getElementById("formid").submit();
+            }
+        </script>
+    </div>
+    <form action="/buy/getcategory/" method="POST">{% csrf_token %}
+        <h3><B><center>Search books by category:</center></B></h3>
+        <table align="center">
+            <tr>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/school.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="school"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="{{STATIC_URL}}images/os.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="college"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/autobiography.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="biography"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/novel.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="novel"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/jungle-book.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="storybook"></center></td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/mythology.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="mythology"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/comic.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="comic/graphic"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/action&adventure.jpeg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="action & adventure"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/sci-fi.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="sci-fi/fantasy"></center></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><img src="/static/images/game-of-life.jpg" width="210px" height="300px"/></td></tr>
+                        <tr><td><center><input type="submit" class="button2" name="category" value="other"></center></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+{% endblock %}

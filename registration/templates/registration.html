@@ -1,0 +1,52 @@
+{% extends 'base1.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create an Account</title>
+        <style>
+            tr,th{height:50px;}
+        </style>
+    </head>
+    <body bgcolor="#D3D3D3">
+        <form action="/register/doreg/" method="POST">
+        {% csrf_token %}
+            <table bgcolor="#FF3D29" align="center">
+                <tr> 
+                    <td align="right">User name :</td>
+                    <td><input type="text" name="username" minlength="4" maxlength="15" required=""></td>
+                </tr>
+                <tr>
+                    <td align="right">Password :</td>
+                    <td><input type="password" name="password" minlength="8" maxlength="12" required=""></td>
+                </tr>
+                <tr>
+                    <td align="right">Confirm<br>Password :</td>
+                    <td><input type="password" name="cpassword" required=""></td>
+                </tr>
+                <tr>
+                    <td align="right">Person name :</td>
+                    <td><input type="text" name="pname" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Email-id :</td>
+                    <td><input type="email" name="email" required=""></td>
+                </tr>
+                <tr>
+                    <td align="right">Mobile No :</td>
+                    <td><input type="text" name="mob"></td>
+                </tr>
+                <tr>
+                    <td align="right">Address: </td>
+                    <td><input type="textarea" name="add" rows="3" cols="50" value="Enter Your address here"></td>
+                </tr>
+                <tr>
+                    <td><center><input type="submit" name="login" value="Submit"></center></td>
+                    <td><center><input type="reset" name="cancel" ></center></td>
+                </tr>
+                
+            </table>
+        </form>
+    </body>
+</html>
+{% endblock %}

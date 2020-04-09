@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+	{% if form.errors %}
+		<p class="error"> Invalid Username or Password </p>
+	{% endif %}
+	<title>Login module</title>
+	<style>
+		tr,th{height:40px;}
+		.button{
+  			background-color: #ffffff;
+  			color:black;
+  			padding:8px 18px;
+   		 	font-weight: bold;
+    		display:inline-block;
+    		text-align: right;
+    		border:2px solid #008CBA;
+    		border-radius: 4px;
+  		}
+  		.button:hover {
+			background-color: purple;
+			border:2px solid purple;	
+    		color: white;
+  		}
+    </style>
+
+<body bgcolor="pink">
+	<form action="/loginm/auth_user/" method = "post">{% csrf_token %}
+		{% if msg %}
+			<center><B>{{msg}}</B></center><br>
+		{% endif %}
+		<table bgcolor="#00FFFF" align="center">
+			<tr>
+				<td><label for="username">user name : </label></td>
+				<td><input type="text" name = "username" value = "" id="username"></td>
+			</tr>
+			<tr>
+				<td><label for="password"> password:</label></td>
+				<td><input type="password" name="password" value="" id="password"></td>
+			</tr>
+			<tr>
+				<td colspan='2'>Not Registered yet?<a href="/register/">Create an account</a></td>
+			</tr>
+			<tr>
+				<td colspan="2">Forgot your password? <a href="/email/forgotpass/">Click here</a></td>
+			</tr>
+			<tr>
+				<center>
+					<td align="center"><input type="submit" class="button" value="Login"/></td>
+					<td><input type="reset" class="button" value="Cancel"/></td>
+				</center>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+{% endblock %}

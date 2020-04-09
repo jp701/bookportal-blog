@@ -1,0 +1,77 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<html>
+    <head></head>
+    <title>Upload Book</title>
+    <style>
+        tr,th{height:50px;}
+        .button{
+	        background-color: #ff6347;
+	        color:black;
+            padding:8px 18px;
+            border-spacing: 0ch;
+            font-weight: bold;
+            border-radius:1pc;
+        }
+    </style>
+    <body bgcolor="#D3D3D3">
+        <form action="/upload/uploadeddetails/" enctype="multipart/form-data" method="POST">{% csrf_token %} 
+            <center><h3><B>Enter book details: </B></h3></center><br>
+            <!--<input type="hidden" name="hidden" value="{{user}}">-->
+            <table bgcolor="#00FFFF"  align="center">
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="bname" required></td>
+                </tr>
+                <tr>
+                    <td>ISBN no:</td>
+                    <td><input type="text" name="bisbn" maxlength="13"></td>
+                </tr>
+                <tr>
+                    <td>Author name:</td>
+                    <td><input type="text" name="author" required></td>
+                </tr>
+                <tr>
+                    <td>Publisher:</td>
+                    <td><input type="text" name="pub"></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td><input type="text" name="price" required></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>
+                        <select name="category">
+                            <option value="select">--Select--</option>
+                            <option value="school">School</option>
+                            <option value="college">Collage</option>
+                            <option value="biography">Biography</option>
+                            <option value="novel">Novels</option>
+                            <option value="storybook">Storybook</option>
+                            <option value="mythology">Mythology</option>
+                            <option value="comic/graphic">Comic/Graphic</option>
+                            <option value="action & adventure">Action & adventure</option>
+                            <option value="sci-fi/fantasy">Sci-Fi/Fantasy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><textarea name="des" rows="4" cols="30" required>Enter how much time have u used books & also some defects if it has any (Book condition)</textarea></td>
+                </tr>
+                <tr>
+                    <td>Book-Image:</td>
+                    <td><input type="file" name="img" id="img"></td>
+                </tr>
+                <tr>
+                    <center><td align="center" colspan="2"><input type="submit" class="button" value="Upload">
+                    <input type="reset" class="button" value="Cancel"></td></center>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
+{% endblock %}

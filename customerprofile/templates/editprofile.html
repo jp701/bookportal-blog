@@ -1,0 +1,86 @@
+{% extends 'base3.html' %}
+{% block content %}
+<html>
+    <style>
+        table,td{
+            height:27px;
+        }
+        .button{
+  	        background-color: #ffffff;
+  	        color:black;
+  	        padding:4px 10px;
+            font-weight: bold;
+            display:inline-block;
+            text-align: right;
+            border:2px solid #008CBA;
+            border-radius: 4px;
+        }
+        .button:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
+    <body bgcolor="#d3d3d3">
+        <form action="/profile/updateprofile/" method="post"> {% csrf_token %}
+            {% if msg %}
+                <center><B>{{msg}}</B></center><br>
+            {% endif %}
+            {% if user %}
+                <table bgcolor="cyan" align="center">
+                    <tr> 
+                        <td align="right">User name :</td>
+                        <td><input type="text" name="username" minlength="4" maxlength="15" value='{{user.username}}' required=""></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Password :</td>
+                        <td><input type="text" name="password" minlength="8" maxlength="12" value='{{user.password}}' required=""></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Confirm<br>Password :</td>
+                        <td><input type="password" name="cpassword" required=""></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Person name :</td>
+                        <td><input type="text" name="pname" value='{{user.p_name}}'required></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Email-id :</td>
+                        <td><input type="email" name="email" value='{{user.email_id}}'required=""></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Mobile No :</td>
+                        <td><input type="text" name="mob" value='{{user.mobile_no}}' required></td>
+                    </tr>
+                    <tr>
+                        <td align="right">Address: </td>
+                        <td><input type="textarea" name="add" rows="3" cols="50" value="{{user.address}}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><center><input type="submit" class="button" name="update" value="Update">
+                        <input type="reset" class="button" name="Reset" ></center></td>
+                    </tr>
+                </table>
+            {% endif %}
+        </form>
+        <br>
+
+        {% if user1 %}
+            <B><center><font face="verdana">
+                <p>Welcome, {{user1.username}} !!!</p> 
+                <p>Your details has been updated successfully...</p>
+            </font></center></B>
+            <center><p><h3><font color="blue" >YOUR UPDATED DETAILS</font></h3></p></center>
+            <font color="">
+            <table bgcolor="#FF3D29" align="center">
+                <tr><td><B>Person name:</B></td><td>{{user1.p_name}}</td></tr>
+                <tr bgcolor="white"><td><B>Password:</B></td><td>{{user1.password}}</td></tr>
+                <tr><td><B>Email-id:</B> </td><td>{{user1.email_id}}</td></tr>
+                <tr bgcolor="white"><td><B>Mobile no:</B> </td><td>{{user1.mobile_no}}</td></tr>
+                <tr><td><B>Address: </B></td><td>{{user1.address}}</td></tr>
+            </table>
+            </font>
+        {% endif %}
+        
+    </body>
+</html>
+{% endblock %}

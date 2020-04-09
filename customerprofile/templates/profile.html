@@ -1,0 +1,37 @@
+{% extends 'base3.html' %}
+{% block content %}
+<style>
+    .button{
+        background-color: #0cecec;
+        border-radius: 1ch;
+	    color:black;
+	    padding:8px 14px;
+	    font-weight: bold;
+    }
+</style>
+<body bgcolor="pink">
+        {% if user1 %}
+            <B><font face="verdana">
+                <center><p>Welcome, {{user1.username}} !!!</p></center> 
+            </font></B>
+            <center><p><h4><font color="blue" >YOUR CURRENT DETAILS</font></h4></p></center>
+            <font color="">
+            <table bgcolor="#e75480" align="center">
+                <tr><td><B>Person name:</B></td><td>{{user1.p_name}}</td></tr>
+                <tr bgcolor="white"><td><B>Password:</B></td><td>{{user1.password}}</td></tr>
+                <tr><td><B>Email-id:</B> </td><td>{{user1.email_id}}</td></tr>
+                <tr bgcolor="white"><td><B>Mobile no:</B> </td><td>{{user1.mobile_no}}</td></tr>
+                <tr><td><B>Address: </B></td><td>{{user1.address}}</td></tr>
+            </table>
+            <br><br>
+            </font>
+            <center>		
+                <input type="button" class="button" name="edit" value="Edit Profile" onclick="location.href='/profile/edit/'">
+                <input type="button" class="button" name="delete" value='Delete Account' onclick="location.href='/profile/deleteprofile/'">
+            </center>
+        {% else %}
+            <br><br>
+            <h3><B><font color='red'><center>No such account exists</center></font></B></h3>
+        {% endif %}
+</body>
+{% endblock %}

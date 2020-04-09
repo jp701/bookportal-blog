@@ -1,0 +1,37 @@
+{% extends 'base1.html' %}
+{% block content %}
+<html>
+    <head>
+        <title>Registration Confirmed!!</title>
+         <style>
+            tr,th{height:50px;}
+            table{
+                border-collapse: collapse;
+            }
+            tr,td{
+                border: none;
+                border-bottom: 1px black;
+            }
+         </style>
+    </head>
+    <body bgcolor="#d3d3d3">
+        {% if uname %}
+        <center>
+            <p>Welcome {{uname}} !!!</p> 
+            <p>You are registered successfully...</p>
+        </center>
+            <center><p><B>REGISTRATION DETAILS</B></p></center>
+            <table bgcolor="#F3314A" border="1px" align="center">
+                <tr><td><B>Person name:</B></td><td>{{p_name}}</td></tr>
+                <tr><td><B>Email-id: </B></td><td>{{email}}</td></tr>
+                <tr><td><B>Mobile no: </B></td><td>{{mobile}}</td></tr>
+                <tr><td><B>Address: </B></td><td>{{address}}</td></tr>
+            </table>
+            <br>
+            <center>Click here <a href="/loginm/login/">to login</a></center>
+        {% else %}
+            <p>Kindly register yourself..</p><a href="registration.html">Click here</a>
+        {% endif %}
+    </body>
+</html>
+{% endblock %}
