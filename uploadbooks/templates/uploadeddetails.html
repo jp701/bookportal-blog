@@ -38,11 +38,11 @@
             color: white;
         }
     </style>
-    <body bgcolor="#00FFFF">
+    <body bgcolor="pink">
         <h2><center><span class="label">UPLOADED BOOK DETAILS</span></center></h2>
         <form action="/upload/getdetails/" method="POST"> {% csrf_token %}
         {% if img %}
-        <table align="center">
+        <table align="center" bgcolor="#00ffff">
             <tr>
                 <td>Title</td>
                 <td>{{img.b_name}}</td>

@@ -24,7 +24,6 @@ def uploadeddetails(request):
         desc=request.POST.get('des','')
         category=request.POST.get('category','')
         image=request.FILES['img']
-
         uname=request.session['username']
         user=User.objects.get(username=uname)
         img=AvailBooks(b_ISBN=isbn,b_name=name,b_author=author,b_price=price,b_publisher=publisher,b_description=desc,b_category=category,uploader_name=user,b_photo=image)
@@ -42,8 +41,8 @@ def getdetails(request):
         uname=request.session['username']
         user=User.objects.get(username=uname)
         if value=='Update' or value=='Update details':
-            book=AvailBooks.objects.get(b_name=bname,uploader_name_id=user)
-            return render(request,'updatedetails.html',{'c':c,'book':book})
+            book=AvailBooks.objects.filter(b_name=bname,uploader_name_id=user)
+            return render(request,'updatedetails.html',{'c':c,'book':book[:1].get()})
         elif value=='Delete':
             AvailBooks.objects.filter(b_name=bname,uploader_name_id=user).delete()
             return HttpResponseRedirect('/profile/uploaded/')
@@ -71,7 +70,7 @@ def updatedetails(request):
             image=book[:1].get().b_photo
         user=User.objects.get(username=uname)
         book.update(b_ISBN=isbn,b_name=name,b_author=author,b_price=price,b_publisher=publisher,b_description=desc,b_category=category,uploader_name=user,b_photo=image)
-        img=AvailBooks.objects.get(b_name=name,uploader_name_id=user)
-        return render(request,'updatedetails.html',{'img':img})
+        img=AvailBooks.objects.filter(b_name=name,uploader_name_id=user)
+        return render(request,'updatedetails.html',{'img':img[:1].get()})
     else:
         return HttpResponseRedirect('/loginm/login/')

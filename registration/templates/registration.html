@@ -6,6 +6,24 @@
         <title>Create an Account</title>
         <style>
             tr,th{height:50px;}
+            .button{
+    	        background-color: #ffffff;
+	            color:black;
+	            padding:5px 10px;
+                font-weight: bold;
+                display:inline-block;
+                text-align: right;
+                border:2px solid purple;
+                border-radius: 4px;
+            }
+            .button:hover {
+                background-color: purple;
+		        border:2px solid purple;	
+                color: white;
+            }
+            .lable{
+                font-size: 10;
+            }
         </style>
     </head>
     <body bgcolor="#D3D3D3">
@@ -25,7 +43,7 @@
                     <td><input type="password" name="cpassword" required=""></td>
                 </tr>
                 <tr>
-                    <td align="right">Person name :</td>
+                    <td align="right">Full name :</td>
                     <td><input type="text" name="pname" required></td>
                 </tr>
                 <tr>
@@ -41,10 +59,17 @@
                     <td><input type="textarea" name="add" rows="3" cols="50" value="Enter Your address here"></td>
                 </tr>
                 <tr>
-                    <td><center><input type="submit" name="login" value="Submit"></center></td>
-                    <td><center><input type="reset" name="cancel" ></center></td>
+                    <center>
+                       <td><center><input type="submit" class="button" name="login" value="Register"></center></td>
+                       <td><input type="reset" name="cancel" value="Cancel" class="button"></td>
+                    </center>
                 </tr>
-                
+            </table>
+            <br>
+            <table bgcolor="ff3d29" align="center" width="275px">
+                <tr>
+                    <td colspan="2"><B>Already Registered?</B> <a href="/loginm/login/">Sign In</a></td>
+                </tr>
             </table>
         </form>
     </body>

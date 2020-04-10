@@ -1,5 +1,20 @@
 {% extends 'base3.html' %}
 {% block content %}
+    <style>
+        .button{
+            background-color: #ffffff;
+	        color:rgb(0, 0, 0);
+	        padding:6px 11px;
+            font-weight: bold;
+            border:2px solid crimson;
+            border-radius: 4px;
+        }
+        .button:hover{
+            border:2px solid crimson;
+            background-color: crimson;
+            color: white;
+        } 
+    </style>
 <body bgcolor="#00ffff">
     {% if book %}
         <table bgcolor="#e75480" cellspacing="0" cellpadding="10" align="center">
@@ -38,7 +53,10 @@
             </tr>
         </table>
     {% else %}
-        <center><h3>Book Not Found..!!</h3></center>
+        <br><br><br>
+        <center><h3>There is no book to be sold...</h3></center>
+        <br>
+        <center><input type="button" class="button" name="upload" value="Upload Book" onclick="location.href='/upload/'"/></center>
     {% endif %}
 </body>
 {% endblock %}

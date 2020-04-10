@@ -17,8 +17,10 @@
     <body bgcolor="#d3d3d3">
         {% if uname %}
         <center>
-            <p>Welcome {{uname}} !!!</p> 
-            <p>You are registered successfully...</p>
+            <font color="green">
+                <p>Welcome {{uname}} !!!</p> 
+                <p>You are registered successfully...</p>
+            </font>
         </center>
             <center><p><B>REGISTRATION DETAILS</B></p></center>
             <table bgcolor="#F3314A" border="1px" align="center">
@@ -28,7 +30,7 @@
                 <tr><td><B>Address: </B></td><td>{{address}}</td></tr>
             </table>
             <br>
-            <center>Click here <a href="/loginm/login/">to login</a></center>
+            <center><a href="/loginm/login/">Click here to login</a></center>
         {% else %}
             <p>Kindly register yourself..</p><a href="registration.html">Click here</a>
         {% endif %}

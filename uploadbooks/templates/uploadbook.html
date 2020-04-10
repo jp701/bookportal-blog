@@ -7,15 +7,21 @@
     <style>
         tr,th{height:50px;}
         .button{
-	        background-color: #ff6347;
+	        background-color: #ffffff;
 	        color:black;
             padding:8px 18px;
             border-spacing: 0ch;
             font-weight: bold;
+            border:2px solid #008CBA;
             border-radius:1pc;
         }
+        .button:hover{
+            border: 2px solid blue;
+            background-color: blue;
+            color:white;
+        }
     </style>
-    <body bgcolor="#D3D3D3">
+    <body bgcolor="pink">
         <form action="/upload/uploadeddetails/" enctype="multipart/form-data" method="POST">{% csrf_token %} 
             <center><h3><B>Enter book details: </B></h3></center><br>
             <!--<input type="hidden" name="hidden" value="{{user}}">-->
@@ -43,7 +49,7 @@
                 <tr>
                     <td>Category:</td>
                     <td>
-                        <select name="category">
+                        <select name="category" required>
                             <option value="select">--Select--</option>
                             <option value="school">School</option>
                             <option value="college">Collage</option>
@@ -64,7 +70,7 @@
                 </tr>
                 <tr>
                     <td>Book-Image:</td>
-                    <td><input type="file" name="img" id="img"></td>
+                    <td><input type="file" name="img" id="img" required></td>
                 </tr>
                 <tr>
                     <center><td align="center" colspan="2"><input type="submit" class="button" value="Upload">

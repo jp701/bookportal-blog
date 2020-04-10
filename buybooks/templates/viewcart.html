@@ -30,11 +30,17 @@
             text-align: left;
         }
         .button2{
-            background-color:rgb(253, 98, 124);
+            background-color:rgb(255, 255, 255);
             border-radius: 4px;
             color:black;
-            padding:10px 18px;
+            padding:6px 12px;
             font-weight: bold;
+            border:2px solid crimson;
+        }
+        .button2:hover{
+            border: 2px solid crimson;
+            background-color: crimson;
+            color:white;
         }
     </style>
     <body bgcolor="pink">
@@ -103,7 +109,7 @@
         {% else %}
             <br><br><br>
             <center><h2>There are no items in your cart</h2></center>
-            <br><br><br>
+            <br>
             <center>
                 <input type="button" class="button2" name="add" value="Continue Buying" onclick="location.href='/buy/'"/>
             </center>

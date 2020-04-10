@@ -7,7 +7,20 @@
 	        padding:4px 8px;
             font-weight: bold;
             border-radius: 1ch;
-        }   
+        }
+        .button{
+            background-color: #ffffff;
+	        color:rgb(0, 0, 0);
+	        padding:6px 11px;
+            font-weight: bold;
+            border:2px solid crimson;
+            border-radius: 4px;
+        }
+        .button:hover{
+            border:2px solid crimson;
+            background-color: crimson;
+            color: white;
+        }  
     </style>
     <body bgcolor="cyan">
     {% if book %}
@@ -54,7 +67,10 @@
         </table><br>
         <center><input type="button" class="button2" name="delete" value="Delete All" onclick="location.href='/profile/deleteAll/'"></center>
     {% else %}
-        <center><h3>Book Not Found..!!</h3></center>
+        <br><br><br>
+        <center><h3>You haven't uploaded any book yet...</h3></center>
+        <br>
+        <center><input type="button" class="button" name="upload" value="Upload Book" onclick="location.href='/upload/'"/></center>
     {% endif %}
     </body>
 {%endblock%}
